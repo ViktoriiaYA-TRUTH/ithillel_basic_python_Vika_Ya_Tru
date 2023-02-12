@@ -1,7 +1,7 @@
 import math
 
 
-def degrees2radians(degrees):  # returns float: radians value
+def degrees2radians(degrees):  # returns float: radians val
     return math.pi * degrees / 180
 
 

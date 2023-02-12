@@ -4,7 +4,7 @@ def triangle_square_and_perimeter(a, b):  # returns 2 values
     return s, p
 
 
-a = int(input('Введіть довжину одного катета:'))
+a = int(input('Введіть довжину першого катета:'))
 b = int(input('Введіть довжину другого катета:'))
 result = triangle_square_and_perimeter(a, b)
 
