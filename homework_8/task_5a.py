@@ -1,6 +1,6 @@
 def get_max_digit(number):  # returns int
     digits = list(number)
-    return max(digits)
+    return int(max(digits))
 
 
 def main():
