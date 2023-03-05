@@ -3,5 +3,5 @@ print(sorted(lst, key=float))
 
 
 lst = [472, 326, 1, 999.0, '1101000', '99', 9, '20', 863, '0']
-print(sorted(lst, key=lambda x: ord(str(x)[0])))
+print(sorted(lst, key=lambda x: str(x)[0]))
 
