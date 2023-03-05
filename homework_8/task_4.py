@@ -1,23 +1,17 @@
-def gen_primes(i):  # returns list of ints
-    result = True
-    if i < 2:
-        result = False
-    else:
-        for j in range(2, i):
-            if i%j == 0:
-                result = False
+def gen_primes(*i):  # returns list of ints
+    result = []
+    for j in range(*i):
+        if j == 0 or j == 1:
+            continue
+        else:
+            for k in range(2, int(j/2) + 1):
+                if j % k == 0:
+                    break
+            else:
+                result.append(j)
     return result
 
 
-def main():
-    for i in range(1, 101):
-        if gen_primes(i):
-            if i == 97:
-                print(i)
-            else:
-                print(i)
+print(gen_primes(1, 100))
 
-
-if __name__ == '__main__':
-    main()
 
