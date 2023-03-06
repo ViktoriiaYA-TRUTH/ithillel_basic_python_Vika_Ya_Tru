@@ -5,4 +5,9 @@ def diff_min_max(num_limit, lower_bound, upper_bound): # returns int
     return max(result) - min(result)
 
 
-print(diff_min_max(10, 0, 567))
+def main():
+    print(diff_min_max(10, 0, 567))
+
+
+if __name__ == '__main__':
+    main()
