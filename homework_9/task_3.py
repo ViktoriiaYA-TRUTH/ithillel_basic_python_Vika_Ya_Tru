@@ -3,7 +3,12 @@ def copydeep(obj):
         result = []
         for i in obj:
             result.append(copydeep(i))
-    elif isinstance(obj, (str, int, float, bool, tuple)):
+    elif isinstance(obj, tuple):
+        result = list()
+        for i in obj:
+            result.append(copydeep(i))
+        return tuple(result)
+    elif isinstance(obj, (str, int, float, bool)):
         result = obj
 
     elif isinstance(obj, dict):
@@ -15,6 +20,11 @@ def copydeep(obj):
 
 
 def main():
+    tuple_example = (1, 67, 49)
+    new_tuple = copydeep(tuple_example)
+    changed_tuple = new_tuple + (99, 101)
+    print(tuple_example, new_tuple, changed_tuple)
+
     my_dict = {1: 'm', 66: 'yy'}
     new_dict_copied_deep = copydeep(my_dict)
     print('The obj: ', my_dict, 'Deepcopy:', new_dict_copied_deep)
