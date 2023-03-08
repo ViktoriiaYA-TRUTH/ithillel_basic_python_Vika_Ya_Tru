@@ -1,8 +1,8 @@
 def lchain(*iterables): # returns list
     lst = []
     for i in iterables:
-        lst.append(list(i))
-    return sum(lst, [])
+        lst.extend(i)
+    return lst
 
 
 def main():
