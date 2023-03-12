@@ -11,6 +11,7 @@ class Godzilla:
             self.current_stomach_volume += human_vol
             print('Я голодний!')
 
+
 def main():
     a = Godzilla(50)
     a.eat(20)
