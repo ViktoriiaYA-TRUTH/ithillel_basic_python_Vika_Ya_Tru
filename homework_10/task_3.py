@@ -21,9 +21,9 @@ def permtuate(text):
         if middle:
             shuffled_middle_chars_list.append(middle)
 
-    middle_good = ''.join(shuffled_middle_chars_list)
-    shuffled_words = [first_char + middle_good + last_char for _ in words]
-    return ' '.join(shuffled_words)
+        middle_good = ''.join(shuffled_middle_chars_list)
+        shuffled_words = [first_char + middle_good + last_char for _ in words]
+        return ' '.join(shuffled_words)
 
 
 def main():
