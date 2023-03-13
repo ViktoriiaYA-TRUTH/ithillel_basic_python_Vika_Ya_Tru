@@ -9,7 +9,7 @@ class Godzilla:
             print('Я з\'їв надто багато людей, більше не можу')
         else:
             self.current_stomach_volume += human_vol
-            print('Я голодний!')
+            print('Я голодний! Давай ще!')
 
 
 def main():
