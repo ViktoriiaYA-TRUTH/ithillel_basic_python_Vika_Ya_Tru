@@ -9,24 +9,16 @@ def copydeep(obj, depth=1, memory=None):
         return obj
 
     if isinstance(obj, list):
-        for idx, elem in enumerate(obj):
-            if isinstance(elem, list):
-                result = []
-                new_depth = depth + 1
-                copydeep(elem, new_depth, memory)
-                for m in elem:
-                    result.append(copydeep(m))
+        result = []
+        for elem in obj:
+            result.append(copydeep(elem, depth=depth + 1, memory=memory))
+        return result
 
     elif isinstance(obj, dict):
-        memory[id(obj)] = obj
-        for idx, elem in enumerate(obj):
-            if isinstance(elem, list):
-                new_depth = depth + 1
-                copydeep(elem, new_depth, memory)
-                result = {
-                    copydeep(key): copydeep(obj)
-                    for key, obj in obj.items()
-                }
+        result = {}
+        for key, value in obj.items():
+            result[copydeep(key, depth=depth + 1, memory=memory)] = copydeep(value, depth=depth + 1, memory=memory)
+        return result
 
     elif isinstance(obj, tuple):
         result = list()
@@ -36,8 +28,7 @@ def copydeep(obj, depth=1, memory=None):
 
     elif isinstance(obj, (str, int, float, bool)):
         result = obj
-
-    return result
+        return result
 
 
 def main():
