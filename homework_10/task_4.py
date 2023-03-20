@@ -34,15 +34,17 @@ def get_integer(lower_bound=1, upper_bound=100, prompt=None):
     return number
 
 
-def get_str(prompt):
+def get_str(prompt, options):
     """
     Get text from user
     :return: entered text by user
     """
-    input_text = str.lower(input(prompt))
-    if input_text != 'c' or 'u' or 'b' or 'l' or 'yes' or 'no' or 'y':
-        print(f'Enter one of the given commands.')
-
+    while True:
+        input_text = input(prompt).lower()
+        if input_text not in options:
+            print(f'Enter one of the given commands.')
+        else:
+            break
     return input_text
 
 
@@ -56,7 +58,7 @@ def guess_user():
     secret_num = randint(1, 100)
     attempts = 0
     while True:
-        guess = get_integer('Enter the number:')
+        guess = get_integer(lower_bound=1, upper_bound=100, prompt='Enter the number:')
         attempts += 1
         if guess == secret_num:
             print(f'Congrats! You won for {attempts} attempts.')
@@ -78,7 +80,7 @@ def guess_program():
     attempts = 0
     while True:
         guess = (lower + upper) // 2
-        result = get_str(f'Is it right number {guess}? Enter "y" if right, enter'
+        result = get_str(f'Is it right number {guess}? Enter "y" if right, enter '
                          f'"b" if your number is greater, "l" if smaller: ')
         attempts += 1
         if result == 'y':
@@ -92,7 +94,9 @@ def guess_program():
 
 def main():
     while True:
-        choice = get_str('Which game mode would you choose? "u" - you will guess the number, "c" - i will guess: ')
+        choice = get_str('Which game mode would you choose? "u" '
+                         '- you will guess the number, "c" - i will guess: ',
+                         options=['c', 'u', 'b', 'l', 'y', 'yes', 'no'])
 
         if choice == 'u':
             guess_user()
@@ -100,7 +104,7 @@ def main():
         elif choice == 'c':
             guess_program()
 
-        repeat = get_str('Would you like to continue? Enter "yes" if yes, "no" if no: ')
+        repeat = get_str('Would you like to continue? Enter "yes" if yes, "no" if no: ', options=['yes', 'no'])
 
         if repeat == 'no':
             break
