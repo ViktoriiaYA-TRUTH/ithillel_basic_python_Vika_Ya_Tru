@@ -2,22 +2,21 @@ import string
 import secrets
 
 
-def gen_password(len):
+def gen_password(length):
+    if length < 8:
+        raise Exception('Too small password length')
     alphabet = string.ascii_letters + string.digits + '_'
+
     while True:
-        password = ''.join(secrets.choice(alphabet) for i in range(len))
+        password = ''.join(secrets.choice(alphabet) for i in range(length))
         if (any(c.islower() for c in password)
             and any(c.isupper() for c in password)
-            and sum(c.isdigit() for c in password)):
-            break
-
-    for c in password:
-        if c * 3 in password:
-            return False
-
-    if len < 8:
-        print('Your password must be at least 8 characters')
-        return False
+            and any(c.isdigit() for c in password)):
+            for i in range(length-1):
+                if password[i] == password[i+1]:
+                    break
+            continue
+        break
 
     return password
 
