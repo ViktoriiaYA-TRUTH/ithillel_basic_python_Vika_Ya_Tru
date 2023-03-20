@@ -3,7 +3,7 @@ import random
 
 def permtuate(text):
     words = text.split(' ')
-
+    shuffled_words = []
     for word in words:
         first_char = word[0]
         last_char = word[-1]
@@ -18,12 +18,16 @@ def permtuate(text):
             if shuffled_3 != every_three:
                 shuffled_middle_chars_list.append(shuffled_3)
 
-        if middle:
+        if len(middle) == 1:
+            shuffled_middle_chars_list.append(middle)
+        if len(middle) == 2:
+            shuffled_middle_chars_list.append(middle[1] + middle[0])
+        else:
             shuffled_middle_chars_list.append(middle)
 
         middle_good = ''.join(shuffled_middle_chars_list)
-        shuffled_words = [first_char + middle_good + last_char for _ in words]
-        return ' '.join(shuffled_words)
+        shuffled_words.append(first_char + middle_good + last_char)
+    return ' '.join(shuffled_words)
 
 
 def main():
